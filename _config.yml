@@ -1,0 +1,8 @@
+title: "Charlotte's Portfolio"
+description: "Showcasing my work in applied mathematics, computer science, and mathematical modeling."
+theme: minima
+baseurl: ""
+url: "https://charlotte-lawton.github.io"
+markdown: kramdown
+show_excerpts: true
+color_scheme: "dark" # Toggle between "light" and "dark"
