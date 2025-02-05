@@ -1,12 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+        nav {
+            background-color: #28527a;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        header {
+            background-color: #28527a;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+    </style>
 </head>
 <body>
-    <nav><a href="index.html">Home</a></nav>
-    <h1>Projects</h1>
-    <p>List of projects coming soon!</p>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+    </nav>
+
+    <header>
+        <h1>MY PROJECTS</h1>
+    </header>
+
+    <!-- Projects Section (Moved from Home Page) -->
+    <section class="project-grid">
+        <div class="project-card">
+            <img src="assets/images/housing-development.jpg" alt="Accelerating Housing Development in Southern Vermont">
+            <h2>Accelerating Housing Development in Southern Vermont</h2>
+            <p>A group project focused on analyzing housing needs and infrastructure in southern Vermont towns.</p>
+            <a href="projects/housing.html">Learn More</a>
+        </div>
+        <div class="project-card">
+            <img src="assets/images/oil-spill.jpg" alt="Toxic Oil Spills and the Northeast Arctic Cod">
+            <h2>Toxic Oil Spill Impact on the Northeast Arctic Cod</h2>
+            <p>Explored patterns and created models to predict the impact of oil spills on the Northeast Arctic Cod population.</p>
+            <a href="projects/oil_spill.html">Learn More</a>
+        </div>
+        <div class="project-card">
+            <img src="assets/images/ice-hockey.jpg" alt="Hockey Game">
+            <h2>Hockey Game Simulation</h2>
+            <p>Python-based simulation mimicking a hockey game from BASIC Computer Games.</p>
+            <a href="projects/hockey.html">Learn More</a>
+        </div>
+    </section>
+
 </body>
 </html>
+    

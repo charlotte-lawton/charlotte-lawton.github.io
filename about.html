@@ -1,12 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #28527a;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        header {
+            background-color: #28527a;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+        .about-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <nav><a href="index.html">Home</a></nav>
-    <h1>About Me</h1>
-    <p>Write about yourself here!</p>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+    </nav>
+
+    <header>
+        <h1>ABOUT ME</h1>
+    </header>
+
+    <section>
+        <p>I am a senior at Bennington College, where I study mathematics and ceramics. My academic work spans statistics, mathematical modeling, applied mathematics, and coding, with experience in R and Python. I enjoy exploring complex data sets and building models that provide insight into real world problems.</p>
+
+        <p>Growing up in Rhode Island, I have always felt a deep connection to the coastal environment, and this influences much of my work. Whether through data-driven research on marine ecosystems or ceramic forms that abstract the textures and rhythms of the ocean, I strive to bridge science and art in meaningful ways. My projects often explore environmental themes, blending analytical rigor with creative expression to better understand and represent the natural world.</p>
+
+        <img src="path/to/your/photo.jpg" alt="Photo of me" class="about-photo">
+    </section>
+
 </body>
 </html>
+

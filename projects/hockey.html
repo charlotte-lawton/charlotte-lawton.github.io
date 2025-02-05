@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hockey Game Simulation</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <style>
+        nav {
+            background-color: #28527a;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        header {
+            background-color: #28527a;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../resume.html">Resume</a>
+        <a href="../projects.html">Projects</a>
+    </nav>
+
+    <header>
+        <h1>Hockey Game Simulation</h1>
+    </header>
+
+    <!-- Project Overview -->
+    <section class="project-description">
+        <h2>Project Overview</h2>
+        <p>
+            The Hockey Game Simulation project is a Python-based simulation that models a simplified hockey game between two teams. The program uses random number generation to determine puck control, shot attempts, goals, and other in-game events. The goal of the simulation is to create a dynamic, automated hockey match where different game scenarios play out based on statistical probabilities.
+        </p>
+    </section>
+
+    <!-- Technologies Used -->
+    <section class="project-technologies">
+        <h2>Technologies Used</h2>
+        <ul>
+            <li>Python Programming</li>
+            <li>Randomization Techniques</li>
+            <li>Basic Data Structures</li>
+            <li>Text-Based User Interface</li>
+        </ul>
+    </section>
+
+    <!-- Embedded PDF Report -->
+    <section class="project-code">
+        <h2>Based On</h2>
+            <a href="../assets/pdfs/hockey BASIC.pdf" target="_blank">Hockey BASIC Game</a> |
+            <a href="../assets/pdfs/hockey.bas.pdf" target="_blank">Hockey BASIC Code</a>
+        <h2>Project Code</h2>
+        <p>View the full project code below:</p>
+        <pre><code class="language-python">
+import random  # import the random module for generating random numbers
+
+# initialize variables
+X = 1  # used in random number generation (e.g., for generating puck control or shot types)
+A = ["Team A"]  # list to store team A's name (1 item now instead of 6)
+B = ["Team B"]  # list to store team B's name (1 item now instead of 6)
+H = [0] * 20  # list to track stats for the game (goals, assists, etc.) DONT REMOVE OR CHANGE.
+# list initialized with 20 zeros. meant for tracking goals scored by each team
+
+game_over = False  # flag to track the game state
+turns = 0  # counter for turns in the game
+
+steal_probability = 0.3 # 30% chance of the opposing team stealing the pass
+save_probability = 0.5 # 50% chance the goalie saves the shot
+pass_bonus = 0.1 # 10% increase in scoring probability per successful pass
+shot_probabilities = {1: 0.3, 2: 0.4, 3: 0.35, 4: 0.45}  # different shot types have different probabilities of scoring
+
+# main function to start the game
+def main_game():
+    print("\t" * 33 + "HOCKEY") 
+    print("\t" * 15 + "CREATIVE COMPUTING  MORRISTOWN, NEW JERSEY")  
+    print("\n" * 3)  
+
+    # ask if the user wants to see the instructions
+    C = input("WOULD YOU LIKE THE INSTRUCTIONS? (YES/NO): ").upper()  # user input, converted to uppercase
+    if C == "NO":
+        pass  # if user chooses 'NO', we just continue
+    elif C == "YES":
+        show_instructions()  # if 'YES', show instructions
+    else:
+        print("ANSWER YES OR NO!!")  # If input is neither 'YES' nor 'NO', ask again
+        return  # End the function here if input is invalid
+
+    # Game setup: Get team names (just the team names now, no player names)
+    A[0] = input("Enter the name of Team A: ")
+    B[0] = input("Enter the name of Team B: ")
+
+    # Ask the user for the duration of the game in minutes
+    game_duration = int(input("Enter the game duration in minutes: "))
+    global turns
+    turns = game_duration  # Set the number of turns to the game duration (1 turn per minute)
+
+    print("\nLET'S BEGIN THE GAME!")
+
+    # Start the main game loop
+    while not game_over and turns > 0:
+        game_loop()
+        turns -= 1  # Decrease the number of turns after each loop
+        if turns == 0:
+            print("\nGAME OVER: Time is up!")
+            game_end()
+
+# Function to display the instructions
+def show_instructions():
+    print("\nINSTRUCTIONS: ...")  # Placeholder for detailed game instructions
+    print("In this game, you will play a simulated hockey game by passing and shooting.")
+    print("Be careful! The other team may steal your pass or the goalie may save your shot!")
+    print("Pass wisely and shoot strategically to score goals!")
+    print("Let's get started!\n")
+
+def game_loop():
+    team_start = [A, B]  # turning it into a list so random.choice function can choose between two teams
+    team_with_puck = random.choice(team_start)  # Randomly choose the team with the puck
+    print(f"\nTeam {team_with_puck[0]} has the puck.")
+    pass_count = 0
+
+    while not game_over:
+        action = input("Do you want to PASS or SHOOT?" + "\t").upper()
+        if action not in ["PASS", "SHOOT"]:
+            print("Please enter either PASS or SHOOT.")
+            continue
+
+        if action == "PASS":
+            pass_attempt = int(input("Enter number of passes (1-3): "))
+            if 1 <= pass_attempt <= 3:
+                print(f"Team {team_with_puck[0]} attempts {pass_attempt} pass(es).")
+                if random.random() < steal_probability:
+                    print(f"Oh no! {team_with_puck[0]}'s pass was intercepted by {B[0] if team_with_puck == A else A[0]}!")
+                    team_with_puck = B if team_with_puck == A else A
+                    print(f"{team_with_puck[0]} now has the puck!")
+                    continue
+                pass_count += pass_attempt
+            else:
+                print("Invalid number of passes.")
+                continue
+        
+        elif action == "SHOOT":
+            shot_type = int(input("SHOT (1-4): 1=Slapshot, 2=Wristshot, 3=Backhand, 4=Snap Shot: "))
+            if 1 <= shot_type <= 4:
+                shot_action(team_with_puck[0], shot_type)
+                shot_chance = shot_probabilities.get(shot_type, 0.3) + (pass_count * pass_bonus)
+                if random.random() < shot_chance:
+                    if team_with_puck == A:
+                        H[9] += 1  # Team A scores
+                    else:
+                        H[8] += 1  # Team B scores
+                    print(f"GOAL!!! {team_with_puck[0]} scores!")
+                else:
+                    print("What a save by the goalie!")
+                print(f"\nCURRENT SCORE: {A[0]} {H[9]} - {B[0]} {H[8]}")
+            else:
+                print("Invalid shot type.")
+                continue
+        
+        team_with_puck = B if team_with_puck == A else A
+        break
+
+def shot_action(team_with_puck, shot_type):
+    shot_types = {
+        1: "SLAPSHOT! A powerful shot from the blue line!",
+        2: "WRISTSHOT! A quick flick of the wrist!",
+        3: "BACKHAND! A sneaky move on goal!",
+        4: "SNAP SHOT! A quick and deadly shot!"
+    }
+    print(f"{team_with_puck} {shot_types.get(shot_type, 'attempts a shot!')}")
+
+def game_end():
+    print(f"\nFINAL SCORE: {A[0]} (Team A) {H[1]} - {B[0]} (Team B) {H[2]}")  # Print the final score
+    print("GAME OVER")  # End of game message
+
+# Start the game
+main_game()
+            </code></pre>
+            <section id="hockey-game">
+                <p>View the code on my repository below:</p>
+                <a href="https://github.com/charlotte-lawton/hockey_simulation" target="_blank">GitHub Repository</a>
+            </section>
+            
+    </section>
+
+    <!-- Challenges and Learnings -->
+    <section class="project-challenges">
+        <h2>Challenges Faced & Lessons Learned</h2>
+        <p>
+            One of the main challenges in this project was designing a game structure that felt dynamic and realistic while maintaining simplicity. Since hockey is a fast-paced game with many variables, simplifying player interactions and game mechanics without losing the essence of the sport required careful consideration. Using random number generation helped introduce variability, but balancing probabilities to create a fair and engaging game was an iterative process.
+        </p>
+        <p>
+            Another challenge was ensuring the program ran smoothly without errors in logic or flow. Debugging issues related to tracking goals, ensuring fair team advantages, and structuring the game loop effectively provided valuable problem-solving experience.
+        </p>
+        <p>
+            Through this project, I learned more about using Python for simulation modeling and game design. It reinforced my understanding of probability-driven simulations and logic-based decision-making, which can be applied to more complex modeling projects in the future. Additionally, working on this project sparked my interest in creating interactive simulations that blend mathematics and programming.
+        </p>
+    </section>
+
+    <!-- Back to Projects -->
+    <footer>
+        <a href="../projects.html" class="btn">Back to Projects</a>
+    </footer>
+</body>
+</html>
